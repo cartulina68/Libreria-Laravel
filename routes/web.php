@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -29,6 +30,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('categorias/{category}/editar', [CategoryController::class, 'edit'])->name('categories.edit');
     Route::patch('categorias/{category}', [CategoryController::class, 'update'])->name('categories.update');
     Route::delete('categorias/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+    // LIBRO
+    Route::get('libros', [BookController::class, 'index'])->name('books.index');
+    Route::get('libros/crear', [BookController::class, 'create'])->name('books.create');
+    Route::post('libros', [BookController::class, 'store'])->name('books.store');
+    Route::get('libros/{book}/editar', [BookController::class, 'edit'])->name('books.edit');
+    Route::patch('libros/{book}', [BookController::class, 'update'])->name('books.update');
+    Route::delete('libros/{book}', [BookController::class, 'destroy'])->name('books.destroy');
+
 });
 
 require __DIR__ . '/settings.php';
