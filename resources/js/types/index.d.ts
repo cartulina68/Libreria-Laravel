@@ -67,6 +67,20 @@ export interface Book {
   };
 }
 
+interface Loan {
+  id: number;
+  start_date: string;
+  end_date: string;
+  days: number;
+  total_price: number;
+  book: {
+    title: string;
+    author: {
+      name: string;
+    };
+  };
+}
+
 export interface PaginatedResponse<T> {
   current_page: number;
   data: T[];

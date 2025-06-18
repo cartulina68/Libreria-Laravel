@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\LoanController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -41,6 +42,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Rutas para clientes
     Route::get('/catalogo', [BookController::class, 'catalog'])->name('books.catalog');
+    Route::get('/prestamos/{book}/crear', [LoanController::class, 'create'])->name('loans.create');
+    Route::post('/prestamos/{book}', [LoanController::class, 'store'])->name('loans.store');
+    Route::get('/prestamos/{loan}/confirmacion', [LoanController::class, 'success'])->name('loans.success');
 });
 
 require __DIR__ . '/settings.php';

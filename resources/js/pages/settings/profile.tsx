@@ -21,15 +21,20 @@ const breadcrumbs: BreadcrumbItem[] = [
 
 type ProfileForm = {
   name: string;
-  email: string;
 };
 
 export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: boolean; status?: string }) {
   const { auth } = usePage<SharedData>().props;
 
-  const { data, setData, patch, errors, processing, recentlySuccessful } = useForm<Required<ProfileForm>>({
+  const {
+    data,
+    setData,
+    patch,
+    errors,
+    processing,
+    recentlySuccessful,
+  } = useForm<Required<ProfileForm>>({
     name: auth.user.name,
-    email: auth.user.email,
   });
 
   const submit: FormEventHandler = (e) => {
@@ -72,14 +77,12 @@ export default function Profile({ mustVerifyEmail, status }: { mustVerifyEmail: 
                 id="email"
                 type="email"
                 className="mt-1 block w-full"
-                value={data.email}
-                onChange={(e) => setData('email', e.target.value)}
+                value={auth.user.email}
                 required
+                disabled
                 autoComplete="username"
                 placeholder="Email address"
               />
-
-              <InputError className="mt-2" message={errors.email} />
             </div>
 
             {mustVerifyEmail && auth.user.email_verified_at === null && (
