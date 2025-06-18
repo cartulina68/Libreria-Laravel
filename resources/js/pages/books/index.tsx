@@ -2,7 +2,7 @@ import AppPagination from '@/components/ui/app-pagination';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import AppLayout from '@/layouts/app-layout';
-import { BreadcrumbItem, PaginatedResponse } from '@/types';
+import { Book, BreadcrumbItem, PaginatedResponse } from '@/types';
 import { Head, Link, router } from '@inertiajs/react';
 import { Pencil, Trash2, FolderPlus } from 'lucide-react';
 import {
@@ -14,19 +14,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-
-interface Book {
-  id: number;
-  title: string;
-  publication_year: number;
-  price_per_day: number;
-  author: {
-    name: string;
-  };
-  category: {
-    name: string;
-  };
-}
 
 interface BookIndexProps {
   books: PaginatedResponse<Book>;

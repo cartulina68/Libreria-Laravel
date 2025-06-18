@@ -77,4 +77,40 @@ class BookController extends Controller
         return redirect()->route('books.index')
             ->with('message', 'Libro eliminado exitosamente.');
     }
+
+    public function catalog(Request $request)
+    {
+        $query = Book::with(['author', 'category'])
+            ->select('books.*')
+            ->join('authors', 'books.author_id', '=', 'authors.id')
+            ->join('categories', 'books.category_id', '=', 'categories.id');
+
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where(function($q) use ($search) {
+                $q->where('books.title', 'like', "%{$search}%")
+                  ->orWhere('authors.name', 'like', "%{$search}%")
+                  ->orWhere('categories.name', 'like', "%{$search}%");
+            });
+        }
+
+        if ($request->filled('author')) {
+            $query->where('books.author_id', $request->input('author'));
+        }
+
+        if ($request->filled('category')) {
+            $query->where('books.category_id', $request->input('category'));
+        }
+
+        $books = $query->orderBy('books.title')
+                       ->paginate(12)
+                       ->withQueryString();
+
+        return Inertia::render('books/catalog', [
+            'books' => $books,
+            'filters' => $request->only(['search', 'author', 'category']),
+            'authors' => Author::select('id', 'name')->orderBy('name')->get(),
+            'categories' => Category::select('id', 'name')->orderBy('name')->get(),
+        ]);
+    }
 }

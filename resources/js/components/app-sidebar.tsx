@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
@@ -6,7 +7,9 @@ import { Link } from '@inertiajs/react';
 import { Bookmark, BookText, LayoutGrid, SquareUserRound } from 'lucide-react';
 import AppLogo from './app-logo';
 
-const mainNavItems: NavItem[] = [
+import { usePage } from '@inertiajs/react';
+
+const adminNavItems: NavItem[] = [
   {
     title: 'Dashboard',
     href: '/dashboard',
@@ -21,15 +24,35 @@ const mainNavItems: NavItem[] = [
     title: 'Categorias',
     href: '/categorias',
     icon: Bookmark,
-   },
+  },
   {
-      title: 'Libros',
-      href: '/libros',
-      icon: BookText,
+    title: 'Libros',
+    href: '/libros',
+    icon: BookText,
+  },
+];
+
+const clientNavItems: NavItem[] = [
+  {
+    title: 'Dashboard',
+    href: '/dashboard',
+    icon: LayoutGrid,
+  },
+  {
+    title: 'Catálogo',
+    href: '/catalogo',
+    icon: BookText,
   },
 ];
 
 export function AppSidebar() {
+  const { auth } = usePage().props as any;
+
+  console.log(auth);
+
+  const isAdmin = auth.user.roles.some((role: any) => role.slug === 'admin');
+  const navItems = isAdmin ? adminNavItems : clientNavItems;
+
   return (
     <Sidebar collapsible="icon" variant="inset">
       <SidebarHeader>
@@ -45,7 +68,7 @@ export function AppSidebar() {
       </SidebarHeader>
 
       <SidebarContent>
-        <NavMain items={mainNavItems} />
+        <NavMain items={navItems} />
       </SidebarContent>
 
       <SidebarFooter>

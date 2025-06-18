@@ -2,7 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Enums\UserRole;
 use App\Models\Author;
+use App\Models\Book;
+use App\Models\Category;
+use App\Models\Role;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,13 +18,30 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call([RoleSeeder::class]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@email.com',
+        $admin = User::factory()->create([
+            'name' => 'Admin User',
+            'email' => 'admin@email.com',
         ]);
 
+        $admin->roles()->attach(Role::where('slug', UserRole::ADMIN)->first()->id);
+
+        // Crear usuarios clientes
+        User::factory(3)->create()->each(function ($user) {
+            $user->roles()->attach(Role::where('slug', UserRole::CLIENT)->first()->id);
+        });
+
+        // Crear categorías
+        Category::factory(5)->create();
+
+        // Crear autores
         Author::factory(10)->create();
+
+        // Crear libros
+        Book::factory(20)->create([
+            'author_id' => fn() => Author::inRandomOrder()->first()->id,
+            'category_id' => fn() => Category::inRandomOrder()->first()->id,
+        ]);
     }
 }

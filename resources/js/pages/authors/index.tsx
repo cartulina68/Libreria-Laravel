@@ -1,17 +1,26 @@
 import AppPagination from '@/components/ui/app-pagination';
 import { Button } from '@/components/ui/button';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import AppLayout from '@/layouts/app-layout';
-import { BreadcrumbItem, PaginatedResponse } from '@/types';
+import { Author, BreadcrumbItem, PaginatedResponse } from '@/types';
 import { Head, Link, router } from '@inertiajs/react';
 import { Pencil, Trash2, UserRoundPlus } from 'lucide-react';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-
-interface Author {
-  id: number;
-  name: string;
-  nationality: string;
-}
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 
 interface AuthorIndexProps {
   authors: PaginatedResponse<Author>;

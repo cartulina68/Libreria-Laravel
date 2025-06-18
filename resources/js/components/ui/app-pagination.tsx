@@ -15,8 +15,6 @@ type Props = {
 export default function AppPagination({ paginated }: Props) {
 	const { links, prev_page_url, next_page_url } = paginated;
 
-	console.log(links, "------\n\n");
-
 	return (
 		<Pagination className="mt-4">
 			<PaginationContent>
