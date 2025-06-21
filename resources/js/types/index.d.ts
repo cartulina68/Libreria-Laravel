@@ -73,6 +73,7 @@ interface Loan {
   end_date: string;
   days: number;
   total_price: number;
+  status: string;
   book: {
     title: string;
     author: {

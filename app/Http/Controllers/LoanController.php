@@ -11,6 +11,19 @@ use Illuminate\Support\Facades\Auth;
 
 class LoanController extends Controller
 {
+    public function index()
+    {
+        $loans = Loan::with(['book.author'])
+            ->where('user_id', Auth::id())
+            ->orderByDesc('created_at')
+            ->paginate(5);
+
+        return Inertia::render('loans/index', [
+            'loans' => $loans,
+        ]);
+    }
+
+
     public function create(Book $book)
     {
         return Inertia::render('loans/create', [

@@ -45,6 +45,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/prestamos/{book}/crear', [LoanController::class, 'create'])->name('loans.create');
     Route::post('/prestamos/{book}', [LoanController::class, 'store'])->name('loans.store');
     Route::get('/prestamos/{loan}/confirmacion', [LoanController::class, 'success'])->name('loans.success');
+    Route::get('/prestamos', [LoanController::class, 'index'])->middleware('auth')->name('loans.index');
 });
 
 require __DIR__ . '/settings.php';

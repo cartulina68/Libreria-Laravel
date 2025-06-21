@@ -43,6 +43,11 @@ const clientNavItems: NavItem[] = [
     href: '/catalogo',
     icon: BookText,
   },
+  {
+    title: 'Préstamos',
+    href: '/prestamos',
+    icon: BookText,
+  },
 ];
 
 export function AppSidebar() {
