@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class AuthorController extends Controller
 {

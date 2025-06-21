@@ -48,8 +48,6 @@ const clientNavItems: NavItem[] = [
 export function AppSidebar() {
   const { auth } = usePage().props as any;
 
-  console.log(auth);
-
   const isAdmin = auth.user.roles.some((role: any) => role.slug === 'admin');
   const navItems = isAdmin ? adminNavItems : clientNavItems;
 
