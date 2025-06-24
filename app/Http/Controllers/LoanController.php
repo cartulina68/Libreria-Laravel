@@ -67,4 +67,16 @@ class LoanController extends Controller
             'loan' => $loan->load(['book', 'book.author']),
         ]);
     }
+
+    public function show(Loan $loan)
+    {
+        return Inertia::render('Loans/show', [
+            'loan' => [
+                'id' => $loan->id,
+                'fecha_inicio' => $loan->fecha_inicio->toIso8601String(),
+                'fecha_fin' => $loan->fecha_fin->toIso8601String(),
+                'libro' => $loan->libro->titulo, // solo si la relación existe
+            ],
+        ]);
+    }
 }

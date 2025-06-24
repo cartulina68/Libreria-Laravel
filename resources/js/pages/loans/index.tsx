@@ -4,6 +4,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import LoanProgressBar from "@/components/loanProgressBar";
+
 // import { Progress } from '@/components/ui/progress';
 import {
   BookOpen,
@@ -131,10 +133,11 @@ export default function LoanDashboard({ loans }: Props) {
                           {getStatusText(loan.status, loan.remaining_days)}
                         </Badge> */}
                       </div>
-                      {/* <Progress
-                        value={((loan.days - loan.remaining_days) / loan.days) * 100}
-                        className="h-2"
-                      /> */}
+                      {<LoanProgressBar
+                      startDate={loan.start_date}
+                      endDate={loan.end_date}
+                       />
+                      }
                     </div>
                     <div className="flex flex-col gap-2 md:w-32">
                       <Button variant="outline" size="sm">

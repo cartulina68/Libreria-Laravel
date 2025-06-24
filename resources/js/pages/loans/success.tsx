@@ -38,7 +38,7 @@ export default function Success({ loan }: SuccessProps) {
 
           <div className="space-x-4">
             <Button asChild variant="outline">
-              <Link href={route('catalog')}>Volver al catálogo</Link>
+              <Link href={route('books.catalog')}>Volver al catálogo</Link>
             </Button>
           </div>
         </div>
