@@ -25,8 +25,10 @@ interface CreateLoanProps {
 }
 
 export default function Create({ book }: CreateLoanProps) {
+  const today = new Date().toLocaleDateString('en-CA'); // formato YYYY-MM-DD
+
   const { data, setData, post, processing, errors } = useForm({
-    start_date: '',
+    start_date: today,
     end_date: '',
   });
 
