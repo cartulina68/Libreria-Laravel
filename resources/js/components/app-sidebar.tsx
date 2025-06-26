@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { Bookmark, BookText, LayoutGrid, SquareUserRound } from 'lucide-react';
+import { Bookmark, BookText, LayoutGrid, SquareUserRound, Users } from 'lucide-react';
 import AppLogo from './app-logo';
 
 import { usePage } from '@inertiajs/react';
@@ -15,6 +15,13 @@ const adminNavItems: NavItem[] = [
     href: '/dashboard',
     icon: LayoutGrid,
   },
+
+  {
+    title: 'Usuarios', // ✅ Nuevo botón
+    href: '/usuarios',
+    icon: Users,
+  },
+
   {
     title: 'Autores',
     href: '/autores',

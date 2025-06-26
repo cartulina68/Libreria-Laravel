@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\LoanController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -18,6 +19,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Rutas para administradores
     Route::middleware(['role:admin'])->group(function () {
+        Route::get('/usuarios', [UserController::class, 'index'])->name('users.index');
         Route::get('autores', [AuthorController::class, 'index'])->name('authors.index');
         Route::get('autores/crear', [AuthorController::class, 'create'])->name('authors.create');
         Route::post('autores', [AuthorController::class, 'store'])->name('authors.store');

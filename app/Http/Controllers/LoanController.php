@@ -12,16 +12,23 @@ use Illuminate\Support\Facades\Auth;
 class LoanController extends Controller
 {
     public function index()
-    {
-        $loans = Loan::with(['book.author'])
-            ->where('user_id', Auth::id())
-            ->orderByDesc('created_at')
-            ->paginate(5);
+{
+    // Actualizar los préstamos vencidos del usuario
+    Loan::where('user_id', Auth::id())
+        ->where('status', 'active')
+        ->whereDate('end_date', '<', Carbon::today())
+        ->update(['status' => 'completed']);
 
-        return Inertia::render('loans/index', [
-            'loans' => $loans,
-        ]);
-    }
+    // Obtener préstamos actualizados
+    $loans = Loan::with(['book.author'])
+        ->where('user_id', Auth::id())
+        ->orderByDesc('created_at')
+        ->paginate(5);
+
+    return Inertia::render('loans/index', [
+        'loans' => $loans,
+    ]);
+}
 
 
     public function create(Book $book)

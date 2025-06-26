@@ -1,7 +1,7 @@
 import AppLayout from '@/layouts/app-layout';
 import { Head } from '@inertiajs/react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+// import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import LoanProgressBar from "@/components/loanProgressBar";
@@ -12,7 +12,7 @@ import {
   Calendar,
   DollarSign,
   // Clock,
-  RotateCcw,
+  // RotateCcw,
   //Plus,
 } from 'lucide-react';
 import { Loan, PaginatedResponse } from '@/types';
@@ -139,12 +139,12 @@ export default function LoanDashboard({ loans }: Props) {
                        />
                       }
                     </div>
-                    <div className="flex flex-col gap-2 md:w-32">
+                    {/* <div className="flex flex-col gap-2 md:w-32">
                       <Button variant="outline" size="sm">
                         <RotateCcw className="mr-2 h-4 w-4" />
                         Extender
                       </Button>
-                    </div>
+                    </div> */}
                   </CardContent>
                 </Card>
               ))
