@@ -42,13 +42,16 @@ export interface User {
   id: number;
   name: string;
   email: string;
+  active: boolean;
   avatar?: string;
   email_verified_at: string | null;
   created_at: string;
   updated_at: string;
-  roles: Role[];
+  is_active: boolean;
+  roles?: Role[];
   [key: string]: unknown;
 }
+
 
 export interface Author {
   id: number;

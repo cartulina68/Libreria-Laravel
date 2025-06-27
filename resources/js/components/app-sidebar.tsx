@@ -17,7 +17,7 @@ const adminNavItems: NavItem[] = [
   },
 
   {
-    title: 'Usuarios', // ✅ Nuevo botón
+    title: 'Usuarios',
     href: '/usuarios',
     icon: Users,
   },
@@ -40,21 +40,24 @@ const adminNavItems: NavItem[] = [
 ];
 
 const clientNavItems: NavItem[] = [
-  {
-    title: 'Dashboard',
-    href: '/dashboard',
-    icon: LayoutGrid,
-  },
-  {
-    title: 'Catálogo',
-    href: '/catalogo',
-    icon: BookText,
-  },
+  // {
+  //   title: 'Dashboard',
+  //   href: '/dashboard',
+  //   icon: LayoutGrid,
+  // },
+
   {
     title: 'Préstamos',
     href: '/prestamos',
     icon: BookText,
   },
+
+  {
+    title: 'Catálogo',
+    href: '/catalogo',
+    icon: BookText,
+  },
+
 ];
 
 export function AppSidebar() {

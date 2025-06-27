@@ -1,4 +1,4 @@
-import AppPagination from '@/components/ui/app-pagination';
+import AppPagination from '@/components/app-pagination';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import AppLayout from '@/layouts/app-layout';

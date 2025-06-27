@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Card, CardContent } from '@/components/ui/card';
-import AppPagination from '@/components/ui/app-pagination';
+import AppPagination from '@/components/app-pagination';
 import { Author, Book, Category, PaginatedResponse } from '@/types';
 import { Button } from '@/components/ui/button';
 import { BookUser } from 'lucide-react';

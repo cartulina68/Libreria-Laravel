@@ -41,7 +41,20 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        $credentials = $this->only('email', 'password');
+
+        // Buscar al usuario por email
+        $user = \App\Models\User::where('email', $credentials['email'])->first();
+
+        // Verificar si existe y está activo
+        if (! $user || ! $user->active) {
+            throw ValidationException::withMessages([
+                'email' => __('Tu cuenta ha sido desactivada.'),
+            ]);
+        }
+
+        // Intentar iniciar sesión
+        if (! Auth::attempt($credentials, $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
@@ -51,6 +64,7 @@ class LoginRequest extends FormRequest
 
         RateLimiter::clear($this->throttleKey());
     }
+
 
     /**
      * Ensure the login request is not rate limited.

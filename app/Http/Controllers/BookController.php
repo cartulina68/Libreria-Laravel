@@ -14,7 +14,7 @@ class BookController extends Controller
     {
         $books = Book::with(['author', 'category'])
             ->orderByDesc('created_at')
-            ->paginate(5);
+            ->paginate(10);
 
         return Inertia::render('books/index', [
             'books' => $books,

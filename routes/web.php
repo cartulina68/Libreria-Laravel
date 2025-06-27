@@ -20,6 +20,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Rutas para administradores
     Route::middleware(['role:admin'])->group(function () {
         Route::get('/usuarios', [UserController::class, 'index'])->name('users.index');
+        Route::patch('usuarios/{user}/desactivar', [UserController::class, 'deactivate'])->name('users.deactivate');
+        Route::patch('/usuarios/{user}/toggle-estado', [UserController::class, 'toggleEstado']);
+
+
         Route::get('autores', [AuthorController::class, 'index'])->name('authors.index');
         Route::get('autores/crear', [AuthorController::class, 'create'])->name('authors.create');
         Route::post('autores', [AuthorController::class, 'store'])->name('authors.store');
