@@ -13,9 +13,9 @@ Route::get('/', function () {
 })->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
+        Route::get('dashboard', function () {
         return Inertia::render('dashboard');
-    })->name('dashboard');
+    })->middleware('role:admin')->name('dashboard');
 
     // Rutas para administradores
     Route::middleware(['role:admin'])->group(function () {

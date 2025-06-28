@@ -123,8 +123,8 @@ export default function LoanDashboard({ loans }: Props) {
                       <h3 className="text-lg font-semibold">{loan.book.title}</h3>
                       <p className="text-muted-foreground">{loan.book.author.name}</p>
                       <div className="text-sm text-muted-foreground">
-                        <p>Inicio: {loan.start_date}</p>
-                        <p>Fin: {loan.end_date}</p>
+                        <p>Inicio: {new Date(loan.start_date).toLocaleDateString()}</p>
+                        <p>Fin: {new Date(loan.end_date).toLocaleDateString()}</p>
                         <p>Precio: S/ {loan.total_price}</p>
                       </div>
                       <div className="flex items-center justify-between">
@@ -168,8 +168,8 @@ export default function LoanDashboard({ loans }: Props) {
                       <h3 className="text-lg font-semibold">{loan.book.title}</h3>
                       <p className="text-muted-foreground">{loan.book.author.name}</p>
                       <div className="text-sm text-muted-foreground">
-                        <p>Inicio: {loan.start_date}</p>
-                        <p>Fin: {loan.end_date}</p>
+                        <p>Inicio: {new Date(loan.start_date).toLocaleDateString()}</p>
+                        <p>Fin: {new Date(loan.end_date).toLocaleDateString()}</p>
                         <p>Total: S/ {loan.total_price}</p>
                       </div>
                       <Badge variant="secondary">Completado</Badge>
